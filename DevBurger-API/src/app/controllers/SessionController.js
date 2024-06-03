@@ -11,7 +11,7 @@ class SessionController {
     const userEmailOrPasswordIncorrect = () =>{
       return response
         .status(401)
-        .json({ error: "Make sure your password or email are correct" });
+        .json({ error: "Verifique se o email ou a senha estão corretos." });
     }
 
     if (!(await schema.isValid(request.body))) userEmailOrPasswordIncorrect();
