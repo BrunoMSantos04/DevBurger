@@ -1,5 +1,6 @@
 import * as Yup from 'yup'
 import Category from '../models/Category';
+import User from '../models/User'
 
 
 class CategoryController {
@@ -16,6 +17,11 @@ class CategoryController {
         return response.status(400).json({ error:err.errors })
     }
 
+    const {admin: isAdmin} = await User.findByPk(request.userId)
+
+    if (!isAdmin) {
+        return response.status(501).json()
+    }
 
     const {name} = request.body    
 
