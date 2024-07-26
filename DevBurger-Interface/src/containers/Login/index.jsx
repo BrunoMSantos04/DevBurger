@@ -4,10 +4,9 @@ import { RightContainer } from "./styles"
 import { Title } from "./styles"
 import { Form } from "./styles"
 import { InputContainer } from "./styles"
-import { Link } from "./styles"
-import { Button } from "./styles"
+import {Button} from '../../components/Button/index'
 
-import Logo from '../../assets/Logo.png'
+import Logo from '../../assets/logoDEV.svg'
 
 export function Login(){
 
@@ -18,8 +17,9 @@ export function Login(){
             </LeftContainer>
             <RightContainer>
                 <Title>
-                Olá, seja bem vindo ao <span>Dev Burguer!</span>
-                Acesse com seu <span>Login e senha</span>.
+                    Olá, seja bem vindo ao <span>Dev Burger!</span>
+                    <br />
+                    Acesse com seu <span>Login e senha</span>.
                 </Title>
                 <Form>
                     <InputContainer>
@@ -30,16 +30,13 @@ export function Login(){
                         <label>Senha</label>
                         <input type="password" />
                     </InputContainer>
-                    <Link>
-                        Esqueci Minha Senha
-                    </Link>
                     <Button>
                         Entrar
                     </Button>
                 </Form>
-                <Link>
-                    Não possui conta? Clique Aqui.
-                </Link>
+                <p>
+                    Não possui conta? <a>Clique Aqui.</a>
+                </p>
             </RightContainer>
         </Container>
     )
