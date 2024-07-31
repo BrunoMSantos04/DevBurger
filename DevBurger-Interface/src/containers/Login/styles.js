@@ -82,9 +82,18 @@ export const InputContainer = styled.div`
         padding: 0px 16px;
     }
 
-    label{
+    label {
         font-size: 18px;
         font-weight: 600;
         color: #ffff;
+    }
+
+    p {
+        font-size: 14px;
+        line-height: 80%;
+        color: #cf3057;
+        font-weight: 600;
+        margin-top: 10px;
+        height: 10px;
     }
 `
