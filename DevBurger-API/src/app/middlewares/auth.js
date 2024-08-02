@@ -8,7 +8,7 @@ function authMiddleware(request, response, next){
         return response.status(401).json({error: 'Token not provide'})
     }
 
-    const token = authToken.split(' ').at(1);
+    const token = authToken.split(' ')[1];
 
     try {
      jwt.verify(token, authConfig.secret, (err, decoded) => {
@@ -19,12 +19,14 @@ function authMiddleware(request, response, next){
 
         request.userId = decoded.id;
         request.userName = decoded.name;
+
+        return next()
      })   
     } catch (err){
         return response.status(401).json({error: 'Token is invalid'})
     }
 
-    return next()
+    
 }
 
 export default authMiddleware
