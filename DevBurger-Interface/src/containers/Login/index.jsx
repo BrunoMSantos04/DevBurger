@@ -1,4 +1,5 @@
 import { useForm } from "react-hook-form"
+import { useNavigate } from "react-router-dom"
 import { yupResolver } from "@hookform/resolvers/yup"
 import * as yup from "yup"
 import { api } from '../../services/api'
@@ -11,8 +12,16 @@ import { InputContainer } from "./styles"
 import { Button } from '../../components/Button/index'
 import { toast } from "react-toastify"
 import Logo from '../../assets/logoDEV.svg'
+import { Link } from "./styles"
+
+
+
+
 
 export function Login() {
+
+    const navigate = useNavigate();
+
 
     const schema = yup
         .object({
@@ -32,16 +41,23 @@ export function Login() {
     const onSubmit = async (data) => {
         const response = await toast.promise(
             api.post('/session', {
-            email: data.email,
-            password: data.password
-        }),
-        {
-            pending: 'Verificando seus dados',
-            success: 'Seja bem vindo (a)',
-            error: 'Dados incorretos'
-        },
-    
-    )
+                email: data.email,
+                password: data.password
+            }),
+            {
+                pending: 'Verificando seus dados',
+                success: {
+                    render() {
+                        setTimeout(() => {
+                            navigate('/');
+                        }, 3500)
+                        return `Seja bem vindo ${data}`
+                    },
+                },
+                error: 'Dados incorretos'
+            },
+
+        )
 
         console.log(response)
     }
@@ -71,7 +87,7 @@ export function Login() {
                     <Button type='submit'>Entrar</Button>
                 </Form>
                 <p>
-                    Não possui conta? <a>Clique Aqui.</a>
+                    Não possui conta? <Link to="/cadastro">Clique Aqui.</Link>
                 </p>
             </RightContainer>
         </Container>

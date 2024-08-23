@@ -11,8 +11,13 @@ import { InputContainer } from "./styles"
 import { Button } from '../../components/Button/index'
 import { toast } from "react-toastify"
 import Logo from '../../assets/logoDEV.svg'
+import { Link } from "./styles"
+import { useNavigate } from "react-router-dom"
 
 export function Register() {
+
+    const navigate = useNavigate();
+
 
     const schema = yup
         .object({
@@ -46,7 +51,12 @@ export function Register() {
 
                 )
             if (status === 200 || status === 201) {
-                toast.success('Usuário criado com sucesso')
+
+                setTimeout(() => {
+                    navigate('/login')
+                }, 3500);
+
+                toast.success('Usuário criado com sucesso. Redirecionando para login')
             } else if (status === 400) {
                 toast.error('E-mail já cadastrado')
             } else {
@@ -97,7 +107,7 @@ export function Register() {
                     <Button type='submit'>Criar Conta</Button>
                 </Form>
                 <p>
-                    Já possui conta? <a>Clique Aqui.</a>
+                    Já possui conta? <Link to="/login">Clique Aqui.</Link>
                 </p>
             </RightContainer>
         </Container>
