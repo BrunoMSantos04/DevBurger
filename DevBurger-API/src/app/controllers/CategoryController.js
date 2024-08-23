@@ -25,13 +25,13 @@ class CategoryController {
         const { filename: path } = request.file
         const { name } = request.body
 
-        const categoryExistis = await Category.findOne({
+        const categoryExists = await Category.findOne({
             where: {
                 name,
             }
         })
 
-        if (categoryExistis) {
+        if (categoryExists) {
             return response.status(400).json({ error: 'Category already exists' })
         }
 

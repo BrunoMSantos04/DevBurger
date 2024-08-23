@@ -14,11 +14,11 @@ module.exports = {
         allowNull: false,
         unique: true,
       },
-      createdAt: {
+      created_at: {
         type: Sequelize.DATE,
         allowNull: false,
       },
-      updatedAt: {
+      updated_at: {
         type: Sequelize.DATE,
         allowNull: false,
       }
