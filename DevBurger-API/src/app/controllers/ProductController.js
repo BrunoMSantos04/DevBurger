@@ -10,7 +10,7 @@ class ProductController {
             name: Yup.string().required(),
             price: Yup.number().required(),
             category_id: Yup.number().required(),
-            offer: Yup.boolean,
+            offer: Yup.boolean(),
         });
 
         try {
@@ -19,7 +19,7 @@ class ProductController {
             return response.status(400).json({ error: err.errors })
         }
 
-        const { admin: isAdmin } = await User.findByPk(resquest.userId)
+        const { admin: isAdmin } = await User.findByPk(request.userId)
 
         if (!isAdmin) {
             return response.status(501).json()
