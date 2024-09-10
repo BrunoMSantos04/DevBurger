@@ -39,7 +39,7 @@ export function Login() {
     })
 
     const onSubmit = async (data) => {
-        const response = await toast.promise(
+        const { data: token } = await toast.promise(
             api.post('/session', {
                 email: data.email,
                 password: data.password
@@ -51,7 +51,7 @@ export function Login() {
                         setTimeout(() => {
                             navigate('/');
                         }, 3500)
-                        return `Seja bem vindo ${data}`
+                        return `Seja bem vindo!`
                     },
                 },
                 error: 'Dados incorretos'
@@ -59,7 +59,7 @@ export function Login() {
 
         )
 
-        console.log(response)
+        localStorage.setItem('token', token)
     }
 
     return (
