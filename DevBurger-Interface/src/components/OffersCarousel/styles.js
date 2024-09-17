@@ -3,7 +3,7 @@ import styled from "styled-components";
 export const Container = styled.div`
     
     .carousel-item {
-        padding-right: 40px;
+        padding-right: 20px;
     }
 
     overflow-x: hidden;
@@ -12,8 +12,8 @@ export const Container = styled.div`
         overflow: visible;
     }
 
-    padding-left: 30px;
-    padding-bottom: 40px;
+    padding-left: 20px;
+    padding-bottom: 10px;
 `
 export const Title = styled.h2`
     font-size: 32px;
@@ -22,7 +22,7 @@ export const Title = styled.h2`
     padding-bottom: 12px;
     position: relative;
     text-align: center;
-    margin: 70px 0;
+    margin: 70px 0px;
     padding-right: 20px;
     padding-left: 20px;
 

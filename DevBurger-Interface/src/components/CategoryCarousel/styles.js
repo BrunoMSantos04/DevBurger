@@ -40,7 +40,7 @@ export const ContainerItems = styled.div`
     align-items: center;
     padding: 30px 10px;
     width: 100%;
-    height: 230px;
+    height: 200px;
     border-radius: 20px;
 
     p{

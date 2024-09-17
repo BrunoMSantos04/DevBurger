@@ -6,6 +6,7 @@ export const Banner = styled.div`
     background: url('${BannerHome}');
     background-size: cover;
     background-position: center;
+    background-repeat: no-repeat;
     height: 480px;
 
     h1{
@@ -24,7 +25,7 @@ export const Container = styled.section`
         rgba(255,255,255,0.5)
     ),
     url('${Background}');
-    height: 500px;
+    height: 700px;
 `
 
 

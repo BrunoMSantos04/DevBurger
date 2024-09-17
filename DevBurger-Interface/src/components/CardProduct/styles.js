@@ -4,19 +4,20 @@ export const Container = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 20px;
-    padding: 20px;
+    gap: 40px;
+    padding: 10px;
     border-radius: 8px;
     background-color: #fff;
     cursor: grab;
-    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 
     div {
-        width: 100%;
-        height: 80px;
+        width: 80%;
+        height: 100px;
         display: flex;
         flex-direction: column;
         justify-content: space-between;
+        gap: 10px;
     }
 
     p {

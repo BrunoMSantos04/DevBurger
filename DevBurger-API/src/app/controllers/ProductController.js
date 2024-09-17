@@ -96,7 +96,7 @@ class ProductController {
 
 
 
-    async index() {
+    async index(request, response) {
         const products = await Product.findAll({
             include: [
                 {
