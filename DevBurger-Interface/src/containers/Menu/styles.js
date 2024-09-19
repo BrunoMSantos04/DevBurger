@@ -1,11 +1,18 @@
 import styled from "styled-components";
 import BannerMenu from "../../assets/MenuBanner.svg"
-
+import Background from '../../assets/background2.png'
+import { Link } from "react-router-dom";
 
 export const Container = styled.div`
     width: 100%;
     min-height: 100vh;
     background-color: #f0f0f0;
+    background: linear-gradient(
+        rgba(255,255,255,0.5),
+        rgba(255,255,255,0.5)
+    ),
+    url('${Background}');
+    height: 700px;
 `
 
 export const Banner = styled.div`
@@ -41,9 +48,34 @@ export const Banner = styled.div`
 `
 
 export const CategoryMenu = styled.div`
-  
+    display: flex;
+    justify-content: center;
+    gap: 50px;
+    margin-top: 30px;
+
+`
+
+export const CategoryButton = styled(Link)`
+    text-decoration: nome;
+    cursor: pointer;
+    background: none;
+    color: #97562a;
+    font-size: 24px;
+    font-weight: 500;
+    padding-bottom: 5px;
+    line-height: 20px;
+    border-bottom: 3px solid #9758a6;
 `
 
 export const ProductsContainer = styled.div`
-  
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    padding: 40px;
+    justify-content: center;
+    max-width: 1280px;
+    gap: 50px;
+    margin: 50px auto 0;
+    
+
+
 `
