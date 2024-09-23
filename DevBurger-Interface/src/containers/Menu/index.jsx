@@ -8,6 +8,7 @@ import { Container,
         CategoryButton
         } from "./styles";
 import { CardProduct } from "../../components/CardProduct";
+import { useNavigate } from "react-router-dom";
 
 
 
@@ -15,6 +16,10 @@ export function Menu() {
 
     const [categories, setCategories] = useState([])
     const [products, setProducts] = useState([])
+    const [activeCategory, setActiveCategory] = useState([0])
+    const [FilteredProducts, setFilteredProducts] = useState([])
+
+    const navigate = useNavigate()
 
     useEffect(() => {
 
@@ -27,10 +32,10 @@ export function Menu() {
         }
 
 
-        async function newProducts() {
+        async function loadProducts() {
             const { data } =  await api.get('/products');
-            const onlyOffers = data.map((product) => (
-                {currencyValue: formatPrice(product.price), ...product,}
+            const newProducts = data.map((products) => (
+                {currencyValue: formatPrice(products.price), ...products,}
             ) )
 
             setProducts(newProducts)
@@ -38,10 +43,24 @@ export function Menu() {
 
 
 
-        newProducts();
+        loadProducts();
         loadCategory();
 
     }, [])
+
+    useEffect(() => {
+        if (activeCategory === 0) {
+            setFilteredProducts(products)
+        } else {
+            const newFilteredProducts = products.filter(
+                (products) => products.category.id === activeCategory
+            )
+
+            setFilteredProducts(newFilteredProducts)
+        }   
+
+    }, [products, activeCategory])
+    
 
 
     return(
@@ -55,15 +74,31 @@ export function Menu() {
             </Banner>
             
             <CategoryMenu>
-                {categories.map((categories) => (
-                    <CategoryButton key={CategoryButton.id} >{CategoryButton.name}</CategoryButton>
+                {categories.map((category) => (
+                    <CategoryButton 
+                    key={category.id} 
+                    $IsActiveCategory={category.id === activeCategory}
+                    onClick={() => {
+                        navigate(
+                            {
+                                pathname: '/cardapio',
+                                search: `?categorias=${category.id}`,
+                            },
+                            {
+                                replace: true,
+                            },                            
+                        )
+                        setActiveCategory(category.id)
+                    }}
+                    
+                    >{CategoryButton.name}</CategoryButton>
                 ))}
             </CategoryMenu>
 
 
             <ProductsContainer>
-                { products.map( (product) => (
-                    <CardProduct product={product} key={product.id} ></CardProduct>
+                { FilteredProducts.map( (products) => (
+                    <CardProduct product={products} key={products.id} ></CardProduct>
                 ))}
             </ProductsContainer>
 

@@ -12,7 +12,7 @@ export const Container = styled.div`
         rgba(255,255,255,0.5)
     ),
     url('${Background}');
-    height: 700px;
+    height: 500px;
 `
 
 export const Banner = styled.div`
@@ -20,7 +20,7 @@ export const Banner = styled.div`
     justify-content: center;
     align-items: center;
     width: 100%;
-    height: 480px;
+    height: 400px;
     position: relative;
     background: url('${BannerMenu}') no-repeat;
     background-position: center;
@@ -59,12 +59,14 @@ export const CategoryButton = styled(Link)`
     text-decoration: nome;
     cursor: pointer;
     background: none;
-    color: #97562a;
+    color: ${ (props) => (props.$IsActiveCategory ? '#9758a6' : '#9a9f9a')};
     font-size: 24px;
     font-weight: 500;
     padding-bottom: 5px;
     line-height: 20px;
-    border-bottom: 3px solid #9758a6;
+    border-bottom: ${ (props) => props.$IsActiveCategory && '3px solid #9758a6'} ;
+    border: none;
+    border-radius: ${ (props) => props.$IsActiveCategory && '8px'};
 `
 
 export const ProductsContainer = styled.div`
@@ -75,7 +77,4 @@ export const ProductsContainer = styled.div`
     max-width: 1280px;
     gap: 50px;
     margin: 50px auto 0;
-    
-
-
 `
