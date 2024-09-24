@@ -5,14 +5,14 @@ import { Link } from "react-router-dom";
 
 export const Container = styled.div`
     width: 100%;
-    min-height: 100vh;
+    min-height: 390vh;
     background-color: #f0f0f0;
     background: linear-gradient(
         rgba(255,255,255,0.5),
         rgba(255,255,255,0.5)
     ),
     url('${Background}');
-    height: 500px;
+    height: 700px;
 `
 
 export const Banner = styled.div`
@@ -56,17 +56,16 @@ export const CategoryMenu = styled.div`
 `
 
 export const CategoryButton = styled(Link)`
-    text-decoration: nome;
+    text-decoration: none;
     cursor: pointer;
     background: none;
-    color: ${ (props) => (props.$IsActiveCategory ? '#9758a6' : '#9a9f9a')};
+    color: ${ (props) => (props.$IsActiveCategory ? '#9758a6' : '#4a474a')};
     font-size: 24px;
     font-weight: 500;
     padding-bottom: 5px;
     line-height: 20px;
-    border-bottom: ${ (props) => props.$IsActiveCategory && '3px solid #9758a6'} ;
+    border-bottom: ${ (props) => props.$IsActiveCategory && '1px solid #9758a6'} ;
     border: none;
-    border-radius: ${ (props) => props.$IsActiveCategory && '8px'};
 `
 
 export const ProductsContainer = styled.div`
@@ -77,4 +76,19 @@ export const ProductsContainer = styled.div`
     max-width: 1280px;
     gap: 50px;
     margin: 50px auto 0;
+`
+
+export const BackButton = styled(Link)`
+    width: 100%;
+    height: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+    font-size: 24px;
+    font-weight: 700;
+    padding-bottom: 5px;
+    line-height: 20px;
+    color: #9758a6;
+  
 `

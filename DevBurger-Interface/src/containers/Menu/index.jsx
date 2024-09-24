@@ -5,10 +5,11 @@ import { Container,
         Banner, 
         CategoryMenu, 
         ProductsContainer, 
-        CategoryButton
+        CategoryButton,
+        BackButton
         } from "./styles";
 import { CardProduct } from "../../components/CardProduct";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 
 
 
@@ -16,10 +17,23 @@ export function Menu() {
 
     const [categories, setCategories] = useState([])
     const [products, setProducts] = useState([])
-    const [activeCategory, setActiveCategory] = useState([0])
     const [FilteredProducts, setFilteredProducts] = useState([])
 
     const navigate = useNavigate()
+
+    const { search } = useLocation()
+    const queryParams = new URLSearchParams(search)
+    
+
+
+    const [activeCategory, setActiveCategory] = useState(() => {
+        const categoryID = +queryParams.get('categorias')
+
+        if (categoryID) {
+            return categoryID
+        }
+        return 0;
+    })
 
     useEffect(() => {
 
@@ -91,7 +105,7 @@ export function Menu() {
                         setActiveCategory(category.id)
                     }}
                     
-                    >{CategoryButton.name}</CategoryButton>
+                    >{category.name}</CategoryButton>
                 ))}
             </CategoryMenu>
 
@@ -101,6 +115,18 @@ export function Menu() {
                     <CardProduct product={products} key={products.id} ></CardProduct>
                 ))}
             </ProductsContainer>
+
+            <BackButton
+                onClick={() => {
+                    navigate(
+                        {
+                            pathname: '/',
+                        }
+                    )
+                }}
+            >
+                 {'< Voltar'} 
+            </BackButton>
 
         </Container>
     );
