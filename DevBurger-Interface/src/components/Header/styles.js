@@ -28,11 +28,16 @@ export const Navigation = styled.nav`
         justify-content: center;
         align-items: center;
         gap: 20px;
+
+        hr {
+            height: 24px;
+            border: 1px solid #625E5E;
+        }
     }
 `
 
 export const HeaderLink = styled(Link)`
-    color: #fff;
+    color: ${props => props.$isActive ? '#9758a6' : '#fff'};
     text-decoration: none;
     font-size: 14px;
     transition: color 200ms;
