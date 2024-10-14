@@ -1,6 +1,5 @@
 import { Banner, Container } from "./styles";
-import {CategoryCarousel} from "../../components/CategoryCarousel"
-import { OffersCarousel } from "../../components/OffersCarousel";
+import {CategoryCarousel, OffersCarousel} from "../../components"
 import { useUser } from "../../hooks/userContext";
 
 export function Home() {
