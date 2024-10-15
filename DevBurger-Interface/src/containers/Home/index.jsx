@@ -1,20 +1,17 @@
-import { Banner, Container } from "./styles";
-import {CategoryCarousel, OffersCarousel} from "../../components"
-import { useUser } from "../../hooks/userContext";
+import { OffersCarousel, CategoriesCarousel } from '../../components';
+import { Banner, Container } from './styles';
 
 export function Home() {
-
-console.log(useUser())
-    return(
+    return (
         <main>
             <Banner>
-                <h1>Bem Vindo(a)!</h1>
+                <h1>Bem-vindo(a)!</h1>
             </Banner>
             <Container>
-               <div>
-                    <CategoryCarousel></CategoryCarousel>
-                    <OffersCarousel></OffersCarousel>
-               </div> 
+                <div>
+                    <CategoriesCarousel />
+                    <OffersCarousel />
+                </div>
             </Container>
         </main>
     );

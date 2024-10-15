@@ -1,8 +1,8 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 export const Container = styled.div`
     height: 50px;
-    background-color: #5C2669;
+    background-color: #5c2669;
     width: 100vw;
     display: flex;
     align-items: center;
@@ -11,6 +11,6 @@ export const Container = styled.div`
     p {
         color: #fff;
         font-size: 14px;
-        font-weight: 500;
+        font-weight: 400;
     }
-`
+`;

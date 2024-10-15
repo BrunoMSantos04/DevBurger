@@ -1,24 +1,24 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
-export const Container = styled.div`
+export const Container = styled.div `
     display: flex;
     flex-direction: column;
     align-items: center;
     gap: 40px;
-    padding: 10px;
-    border-radius: 8px;
+    padding: 20px;
+    border-radius: 28.48px;
     background-color: #fff;
     cursor: grab;
     box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
     position: relative;
 
     div {
-        width: 80%;
-        height: 100px;
+        width: 100%;
+        height: 80px;
         display: flex;
         flex-direction: column;
         justify-content: space-between;
-        gap: 10px;
+        gap: 5px;
     }
 
     p {
@@ -30,15 +30,15 @@ export const Container = styled.div`
     }
 
     strong {
-        font-size: 24px;
+        font-size: 22px;
         color: #363636;
         font-weight: 800;
-        line-height: 20px;
+        line-height: 22px;
     }
-`
+`;
 
-export const CardImage = styled.img`
+export const CardImage = styled.img `
     height: 100px;
     position: absolute;
     top: -50px;
-`
+`;

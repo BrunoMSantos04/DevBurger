@@ -1,32 +1,43 @@
-import { useForm } from "react-hook-form"
-import { yupResolver } from "@hookform/resolvers/yup"
-import * as yup from "yup"
-import { api } from '../../services/api'
-import { Container } from "./styles"
-import { LeftContainer } from "./styles"
-import { RightContainer } from "./styles"
-import { Title } from "./styles"
-import { Form } from "./styles"
-import { InputContainer } from "./styles"
-import { Button } from '../../components/Button/index'
-import { toast } from "react-toastify"
-import Logo from '../../assets/logoDEV.svg'
-import { Link } from "./styles"
-import { useNavigate } from "react-router-dom"
+import { useForm } from 'react-hook-form';
+import { yupResolver } from '@hookform/resolvers/yup';
+import * as yup from 'yup';
+import { api } from '../../services/api';
+import { toast } from 'react-toastify';
+import { useNavigate } from 'react-router-dom';
 
+import Logo from '../../assets/logo-login.svg';
+import { Button } from '../../components/Button';
+import {
+    Container,
+    Form,
+    InputContainer,
+    LeftContainer,
+    RightContainer,
+    Title,
+    Link,
+} from './styles';
 export function Register() {
-
     const navigate = useNavigate();
-
 
     const schema = yup
         .object({
-            name: yup.string().required('O nome é obrigatório'),
-            email: yup.string().email('Digite um email válido').required('O email é obrigatório'),
-            password: yup.string().min(6, 'A senha deve conter pelo menos 6 (seis) caracteres').required('Digite uma senha'),
-            confirmPassword: yup.string().oneOf([yup.ref('password')], 'As senhas devem ser iguais').required('Confirme sua senha'),
+            name: yup
+                .string()
+                .required('O nome é obrigatório'),
+            email: yup
+                .string()
+                .email('Digite um e-mail válido')
+                .required('O e-mail é obrigatório'),
+            password: yup
+                .string()
+                .min(6, 'Sua senha deve ter no mínimo 6 caracteres.')
+                .required('Digite uma senha'),
+            confirmPassword: yup
+                .string()
+                .oneOf([yup.ref('password')], 'As senhas devem ser iguais')
+                .required('Confirme sua senha'),
         })
-        .required()
+        .required();
 
     const {
         register,
@@ -34,56 +45,50 @@ export function Register() {
         formState: { errors },
     } = useForm({
         resolver: yupResolver(schema),
-    })
+    });
 
     const onSubmit = async (data) => {
 
         try {
-            const { status } = await
-                api.post('/users', {
-                    name: data.name,
-                    email: data.email,
-                    password: data.password
+            const { status } = await api.post('/users', {
+                name: data.name,
+                email: data.email,
+                password: data.password,
+            },
+                {
+                    validateStatus: () => true,
                 },
-                    {
-                        validateStatus: () => true,
-                    },
+            );
 
-                )
             if (status === 200 || status === 201) {
-
                 setTimeout(() => {
-                    navigate('/login')
-                }, 3500);
-
-                toast.success('Usuário criado com sucesso. Redirecionando para login')
+                    navigate('/login');
+                }, 2000);
+                toast.success('Usuário criado com sucesso. Redirecionando para login');
             } else if (status === 400) {
-                toast.error('E-mail já cadastrado')
+                toast.error('E-mail já cadastrado! Faça o login para continuar');
             } else {
                 throw new Error();
             }
 
         } catch (error) {
-            toast.error('Não foi possível criar usuário, tente novamente')
+            toast.error('😭 Não foi possível criar usuário, tente novamente');
         }
-
-
-    }
-
+    };
 
     return (
         <Container>
             <LeftContainer>
-                <img src={Logo} alt="Logo-devburger" />
+                <img src={Logo} alt='logo-devburger' />
             </LeftContainer>
             <RightContainer>
                 <Title>
                     Criar Conta
                 </Title>
-                <Form onSubmit={handleSubmit(onSubmit)} >
+                <Form onSubmit={handleSubmit(onSubmit)}>
                     <InputContainer>
                         <label>Nome</label>
-                        <input type="name" {...register('name')} />
+                        <input type="text" {...register('name')} />
                         <p>{errors?.name?.message}</p>
                     </InputContainer>
 
@@ -100,16 +105,17 @@ export function Register() {
                     </InputContainer>
 
                     <InputContainer>
-                        <label>Confirme a senha</label>
+                        <label>Confirmar Senha</label>
                         <input type="password" {...register('confirmPassword')} />
                         <p>{errors?.confirmPassword?.message}</p>
                     </InputContainer>
-                    <Button type='submit'>Criar Conta</Button>
+
+                    <Button type="submit">Criar Conta</Button>
                 </Form>
                 <p>
-                    Já possui conta? <Link to="/login">Clique Aqui.</Link>
+                    Já possui uma conta ? <Link to="/login">Clique aqui.</Link>
                 </p>
             </RightContainer>
         </Container>
-    )
+    );
 }
